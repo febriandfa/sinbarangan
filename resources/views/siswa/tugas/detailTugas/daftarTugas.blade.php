@@ -4,9 +4,9 @@
 <div class="w-full">
     @php
         $userAnswers = $tugases->tugas_answers->where('user_id', Auth::user()->id)->first();
-        $users =  Auth::user()->where('id', Auth::user()->id)->with(['members'])->first();
-        $kelompokAnswers = $tugases->tugas_answers->where('kelompok_id', Auth::user()->members->kelompok_id)->first();
-        $answers = $userAnswers ? $userAnswers : $kelompokAnswers;
+        // $users =  Auth::user()->where('id', Auth::user()->id)->with(['members'])->first();
+        // $kelompokAnswers = $tugases->tugas_answers->where('kelompok_id', Auth::user()->members->kelompok_id)->first();
+        // $answers = $userAnswers ? $userAnswers : $kelompokAnswers;
     @endphp
 
     <div class="flex-col items-center justify-center mb-4 rounded-xl bg-white p-7">
@@ -21,7 +21,8 @@
                 $isDeadline = $currentDateTime->greaterThanOrEqualTo($deadline);
             @endphp
 
-            @if ($userAnswers && $users->members->role == "ketua")
+            {{-- @if ($userAnswers && $users->members->role == "ketua") --}}
+            @if ($userAnswers)
                 <a href="{{ $isDeadline ? "#" : route('tugas-job.create', $tugases->id) }}"
                     class="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 {{ $isDeadline ? "bg-gray-400 cursor-not-allowed" : "bg-custom-orange cursor-pointer" }}">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,8 +58,8 @@
                 </tr>
             </thead>
             <tbody>
-                @if ($answers)
-                    @foreach($answers?->tugas_jobs as $index => $job)
+                @if ($userAnswers)
+                    @foreach($userAnswers?->tugas_jobs as $index => $job)
                         <tr class="bg-white">
                             <th scope="row" class="px-8 py-4 justify-center items-center text-center">
                                 <div class="flex items-center justify-center">
@@ -107,7 +108,6 @@
 </div>
 
 <script>
-    console.log(@json($users))
 
 </script>
 
