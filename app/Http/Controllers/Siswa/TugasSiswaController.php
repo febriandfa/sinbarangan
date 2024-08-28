@@ -161,7 +161,7 @@ class TugasSiswaController extends Controller
 
     public function laporan(string $id)
     {
-        $tugases = Tugas::with(['tugas_answers.tugas_jobs'])->findOrFail($id);
+        $tugases = Tugas::with(['tugas_answers.tugas_jobs.users'])->findOrFail($id);
 
         return view('siswa.tugas.detailTugas.laporan', compact('tugases'));
     }

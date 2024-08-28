@@ -88,7 +88,7 @@
                                         {{ $job->nama }}
                                     </td>
                                     <td class="px-8 py-4">
-                                        {{ $job->user->name }} {{-- Menampilkan nama anggota kelompok --}}
+                                        {{ $kelompokAnswers->user->name }} {{-- Menampilkan nama anggota kelompok --}}
                                     </td>
                                     <td class="px-8 py-4 text-center font-semibold">
                                         {{ date('d/m/Y H:i', strtotime($job->deadline)) }}
