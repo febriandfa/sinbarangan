@@ -39,6 +39,15 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+
+            'siswa' => [
+                'driver' => 'session',
+                'provider' => 'siswa',
+            ],
+        
+            'guru' => [
+                'driver' => 'session',
+                'provider' => 'guru',]
         ],
     ],
 
